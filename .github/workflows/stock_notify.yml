@@ -1,8 +1,8 @@
-name: 台股收盤行情通知
+﻿name: ?啗?嗥銵??
 
 on:
   schedule:
-    # 台灣時間 13:35 (UTC 05:35)，週一至週五
+    # ?啁?? 13:35 (UTC 05:35)嚗曹??喲曹?
     - cron: '35 5 * * 1-5'
   workflow_dispatch:
 
@@ -12,20 +12,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: 設定 Python
+      - name: 閮剖? Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
-      - name: 安裝相依套件
+      - name: 摰??訾?憟辣
         run: pip install requests
 
-      - name: 抓取股價並寄送郵件
-        env:
+      - name: ???∪銝血??隞?        env:
           SMTP_SERVER: ${{ secrets.SMTP_SERVER }}
           SMTP_PORT: ${{ secrets.SMTP_PORT }}
           EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
           EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
         run: python scripts/fetch_stock.py
-# trigger re-index
