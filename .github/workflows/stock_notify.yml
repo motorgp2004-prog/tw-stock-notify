@@ -1,8 +1,7 @@
-﻿name: ?啗?嗥銵??
+﻿name: 台股收盤行情通知
 
 on:
   schedule:
-    # ?啁?? 13:35 (UTC 05:35)嚗曹??喲曹?
     - cron: '35 5 * * 1-5'
   workflow_dispatch:
 
@@ -12,15 +11,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: 閮剖? Python
+      - name: 設定 Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
-      - name: 摰??訾?憟辣
+      - name: 安裝相依套件
         run: pip install requests
 
-      - name: ???∪銝血??隞?        env:
+      - name: 抓取股價並寄送郵件
+        env:
           SMTP_SERVER: ${{ secrets.SMTP_SERVER }}
           SMTP_PORT: ${{ secrets.SMTP_PORT }}
           EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
