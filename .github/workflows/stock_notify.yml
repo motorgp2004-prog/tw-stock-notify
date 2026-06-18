@@ -1,4 +1,4 @@
-﻿name: 台股收盤行情通知
+name: 台股收盤行情通知
 
 on:
   schedule:
