@@ -19,8 +19,8 @@ def is_target_time():
     if now.weekday() >= 5:
         print(f"週末({now.strftime('%A')})，跳過")
         return False
-    # 只允許在 13:30 ~ 13:44 之間執行（每天最多一封）
-    if now.hour == 13 and 30 <= now.minute <= 44:
+    # 只允許在 13:30 ~ 14:15 之間執行（每天最多一封）
+    if (now.hour == 13 and now.minute >= 30) or (now.hour == 14 and now.minute <= 15):
         return True
     print(f"非目標時間({now.hour}:{now.minute:02d})，跳過")
     return False
